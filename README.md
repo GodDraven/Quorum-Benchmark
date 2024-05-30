@@ -1,13 +1,11 @@
-# BlockBench
+# Benchmark Introduction
 
-BlockBench is the first benchmarking framework for private blockchain systems.
-It serves as a fair means of comparison for different platforms and enables deeper understanding
-of different system design choices.
+The benchmark is based on an open source benchmark [BlockBench](https://github.com/ooibc88/blockbench) for [quorum](https://github.com/Consensys/quorum). It includes a few shell scripts to deploy quorum nodes automatically and launch a set of clients to interact with quorum nodes.
 
-BlockBench comes with both [macro benchmark workloads](src/macro) for evaluating the overall performance and
-[micro benchmark workloads](src/micro) for evaluating performance of individual layers. 
+This version is based on an existing private network in a local machine.
 
 ## Workloads 
+[Macro benchmark workloads](src/macro) is to evaluate the overall performance and [micro benchmark workloads](src/micro) is to evaluate performance of individual layers.
 
 ### Macro-benchmark
 
@@ -24,8 +22,7 @@ BlockBench comes with both [macro benchmark workloads](src/macro) for evaluating
 ## Source file structure
 
 + Smart contract sources are in [benchmark/contracts](benchmark/contracts) directory.
-+ Instructions and scripts to run benchmarks for Ethereum, Hyperledger Fabric v0.6, v1.4 and v2.2, Parity and Quorum are in [ethereum](benchmark/ethereum),
-[hyperledger fabric v0.6](benchmark/hyperledger) , [hyperledger fabric v1.4](benchmark/fabric-v1.4), [hyperledger fabric v2.2](benchmark/fabric-v2.2), [parity](benchmark/parity) , [quorum_raft](benchmark/quorum_raft) and [quorum_vote](benchmark/quorum_vote) directories respectively.
++ Instructions and scripts to run benchmarks for Quorum are in [quorum_pbft](benchmark/quorum_pbft), [quorum_raft](benchmark/quorum_raft) and [quorum_vote](benchmark/quorum_vote) directories respectively.
 + Drivers for benchmark workloads are in [src](src) directory.
 
 ## Dependency
@@ -45,26 +42,12 @@ BlockBench comes with both [macro benchmark workloads](src/macro) for evaluating
 
 * [libcurl](https://curl.haxx.se/libcurl/)
 
-### Node.js libraries
-Go to [micro](src/micro) directory and use `npm install` to install the dependency libraries
-* [Web3.js](https://github.com/ethereum/web3.js/)
-* [zipfian](https://www.npmjs.com/package/zipfian)
-* [bignumber.js](https://www.npmjs.com/package/bignumber.js)
-* [fabric-v1.4 SDK](https://github.com/hyperledger/fabric-sdk-node/tree/release-1.4)
-* [fabric-v2.2 SDK](https://github.com/hyperledger/fabric-sdk-node/tree/release-2.2)
+## Usage
+* Compile application to generate binary file "driver"
+* Deploy a private quorum network in a local machine referring to [Use IBFT | GoQuorum](https://docs.goquorum.consensys.io/tutorials/private-network/create-ibft-network)
+* Modify parameters in [env.sh](benchmark/quorum_pbft/env.sh) according to your local configuration
+* Run [start-all.sh](benchmark/quorum_pbft/start-all.sh)
+* Run [start-clients.sh](benchmark/quorum_pbft/start-clients.sh)
 
-## Blockchain Systems 
-* [geth(ethereum)](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu)
-* [geth(parity)](https://github.com/paritytech/parity/wiki/Setup)
-* [geth(quorum)](https://github.com/jpmorganchase/quorum/wiki/Getting-Set-Up)
-* [hyperledger fabric v0.6](https://github.com/hyperledger/fabric/tree/v0.6)
-* [hyperledger fabric  v1.4](https://github.com/hyperledger/fabric/tree/release-1.4)
-* [hyperledger fabric  v2.2](https://github.com/hyperledger/fabric/tree/release-2.2)
-
-## References
-* [1] A. Dinh, J. Wang, G. Chen, R. Liu, B. C. Ooi, K.-L. Tan: [BLOCKBENCH: A Framework for Analysing Private Blockchains](https://www.comp.nus.edu.sg/~ooibc/blockbench.pdf). ACM SIGMOD 2017.
-* [2] [The Morning Paper Review](https://blog.acolyer.org/2017/07/05/blockbench-a-framework-for-analyzing-private-blockchains/) 2017
-* [3] A. Dinh, R. Liu, M. Zhang, G. Chen, B.C. Ooi, J. Wang: [Untangling Blockchain: A Data Processing View of Blockchain Systems](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8246573). IEEE Transactions on Knowledge and Data Engineering, July 2018.
-* [4] [FabricSharp](https://www.comp.nus.edu.sg/~dbsystem/fabricsharp/#/) -- an faster Fabric blockchain system.
-* [5] M. Zhang, Z. Xie, C. Yue, Z. Zhong: [Spitz: A Verifiable Database System](http://www.vldb.org/pvldb/vol13/p3449-zhang.pdf). Proc. VLDB Endow. 13(12): 3449-3460 (2020).
-* [6] P. Ruan, G. Chen, A. Dinh, Q. Lin, D. Loghin, B. C. Ooi, M. Zhang: [Blockchains vs. Distributed Databases: Dichotomy and Fusion](https://www.comp.nus.edu.sg/~ooibc/bcvsdb.pdf). To appear in ACM SIGMOD 2021.
+## To do
+* Transmission to AWS virtual machines
