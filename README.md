@@ -50,4 +50,4 @@ This version is based on an existing private network in a local machine.
 * Run [start-clients.sh](benchmark/quorum_pbft/start-clients.sh)
 
 ## To do
-* Transmission to AWS virtual machines
+* Modify shell scripts to deploy the quorum network in AWS. The related scripts are [here](benchmark/quorum_pbft/). You can learn about them by [README.md](benchmark/quorum_raft/README.md)
